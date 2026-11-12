@@ -1,0 +1,60 @@
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { registerSchema } from "./validation";
+import Button from "../../../ui/Button";
+
+export default function Register() {
+  function handleSubmit(values) {
+    console.log(values)
+  }
+  return (
+    <Formik
+      initialValues={{
+        username: "",
+        email:"",
+        password: "",
+      }}
+      onSubmit={handleSubmit}
+      validationSchema={registerSchema}
+    >
+      <Form className="w-200 mx-auto shadow flex flex-col items-center justify-center  gap-10 min-h-dvh">
+        <h1 className="text-3xl tracking-wider cursor-default text-gray-400 hover:text-gray-600 duration-300  font-bold  uppercase">
+          Welcome
+        </h1>
+        <div className="flex flex-col gap-5  w-1/2">
+          <Field
+            name="username"
+            className="border-2 focus:border-gray-500 w-full outline-0 rounded-lg border-gray-300 px-4 py-2"
+            placeholder="User name :"
+          />
+            <ErrorMessage
+            name="username"
+            component={"p"}
+            className="text-red-500  font-bold text-[16px]"
+          />
+          <Field
+            name="email"
+            className="border-2 w-full focus:border-gray-500 outline-0 rounded-lg border-gray-300 px-4 py-2"
+            placeholder="Email :"
+          />
+          <ErrorMessage
+            name="email"
+            component={"p"}
+            className="text-red-500  font-bold text-[16px]"
+          />
+          <Field
+            type="password"
+            name="password"
+            className="border-2 w-full focus:border-gray-500 outline-0 rounded-lg border-gray-300 px-4 py-2"
+            placeholder="Password :"
+          />
+          <ErrorMessage
+            name="password"
+            component={"p"}
+            className="text-red-500 font-bold text-[16px]"
+          />
+        </div>
+        <Button >Register</Button>
+      </Form>
+    </Formik>
+  );
+}
