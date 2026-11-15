@@ -1,16 +1,40 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { registerSchema } from "./validation";
 import Button from "../../../ui/Button";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useContext, useEffect } from "react";
+import { globalStore } from "../../../Stores/Mainstore";
+import { useNavigate } from "react-router";
 
 export default function Register() {
-  function handleSubmit(values) {
-    console.log(values)
+  const { base_url, token } = useContext(globalStore);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (token) {
+      navigate("/home");
+    }
+  }, [token]);
+  async function handleSubmit(values) {
+    try {
+      const res = await axios.post(
+        `${base_url}/api/auth/local/register`,
+        values,
+      );
+      if (res.data) {
+        toast.success("User Create Succefully");
+        if (token) {
+        }
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   }
   return (
     <Formik
       initialValues={{
         username: "",
-        email:"",
+        email: "",
         password: "",
       }}
       onSubmit={handleSubmit}
@@ -26,7 +50,7 @@ export default function Register() {
             className="border-2 focus:border-gray-500 w-full outline-0 rounded-lg border-gray-300 px-4 py-2"
             placeholder="User name :"
           />
-            <ErrorMessage
+          <ErrorMessage
             name="username"
             component={"p"}
             className="text-red-500  font-bold text-[16px]"
@@ -53,7 +77,7 @@ export default function Register() {
             className="text-red-500 font-bold text-[16px]"
           />
         </div>
-        <Button >Register</Button>
+        <Button>Register</Button>
       </Form>
     </Formik>
   );

@@ -1,11 +1,11 @@
-import { BrowserRouter } from "react-router";
-import Navbar from "./components/Navbar";
 import Router from "./Router";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   return (
     <div>
-     <Router/>
+      <Router />
+      <Toaster/>
     </div>
-  )
+  );
 }
