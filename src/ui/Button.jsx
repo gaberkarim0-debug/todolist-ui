@@ -1,6 +1,6 @@
 export default function Button({ handleClick ,children }) {
   return (
-    <button onClick={handleClick} type="submit" className="relative cursor-pointer px-5 py-3   text-center inline-flex justify-center  uppercase text-white rounded-lg border-solid transition-transform duration-300 ease-in-out group outline-offset-4 focus:outline focus:outline-2 focus:outline-white focus:outline-offset-4  overflow-hidden">
+    <button onClick={handleClick} type="submit" className=" relative cursor-pointer px-5 py-3   text-center inline-flex justify-center  uppercase text-white rounded-lg border-solid transition-transform duration-300 ease-in-out group outline-offset-4 focus:outline focus:outline-2 focus:outline-white focus:outline-offset-4  overflow-hidden">
       <span className="relative z-20 text-gray-400 tracking-wider">{children}</span>
       <span className="absolute left-[-75%] top-0 h-full bg-white/20 rotate-12 z-10 blur-lg group-hover:left-[125%] transition-all duration-1000 ease-in-out"></span>
       <span className="w-1/2 drop-shadow-3xl transition-all duration-300 block border-[#b5b0b0] absolute h-[20%] rounded-tl-lg border-l-2 border-t-2 top-0 left-0"></span>

@@ -8,13 +8,15 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
 export default function Login() {
-  const { base_url, setToken, token } = useContext(globalStore);
+  const { base_url, setToken, token, setUserData } = useContext(globalStore);
   // navigate
   const navigate = useNavigate();
   // use Effect
   useEffect(() => {
     if (token) {
-      navigate("/home");
+      setTimeout(() => {
+        navigate("/home");
+      }, 3000);
     }
   }, [token]);
   const handleSubmit = async (values) => {
@@ -23,6 +25,8 @@ export default function Login() {
       if (res.data) {
         localStorage.setItem("token", res.data.jwt);
         setToken(res.data.jwt);
+        setUserData(res.data.user);
+        localStorage.setItem("userData", JSON.stringify(res.data.user));
         toast.success("You have successfully signed in!", {
           duration: 3000,
         });
@@ -45,11 +49,11 @@ export default function Login() {
       onSubmit={handleSubmit}
       validationSchema={loginSchema}
     >
-      <Form className="w-lg-200 mx-auto shadow flex flex-col items-center justify-center  gap-10 min-h-dvh">
+      <Form className="w-lg-200  mx-auto shadow flex flex-col items-center justify-center  gap-10 min-h-dvh">
         <h1 className="md:text-3xl text-xl tracking-wider cursor-default text-gray-400 hover:text-gray-600 duration-300  font-bold  uppercase">
           Welcome
         </h1>
-        <div className="flex flex-col gap-5  w-1/2">
+        <div className="flex flex-col gap-0 lg:gap-5 w-full lg:w-1/2">
           <Field
             name="identifier"
             className="border-2 w-full focus:border-gray-500 outline-0 rounded-lg border-gray-300 px-4 py-2"

@@ -1,8 +1,15 @@
 import React from "react";
 
-export default function DeleteButton() {
+export default function DeleteButton({ id, handleSubmit }) {
   return (
-    <button className="group relative flex h-10 w-10 flex-col items-center justify-center overflow-hidden rounded-xl  cursor-pointer border-red-800 bg-red-400 hover:bg-red-600">
+    <button
+      onClick={() => {
+        if (typeof handleSubmit == "function") {
+          handleSubmit(id);
+        }
+      }}
+      className="group relative flex h-10 w-10 flex-col items-center justify-center overflow-hidden rounded-xl  cursor-pointer border-red-800 bg-red-400 hover:bg-red-600"
+    >
       <svg
         viewBox="0 0 1.625 1.625"
         className="absolute -top-6 fill-white delay-100 group-hover:top-5 group-hover:animate-[spin_1.4s] group-hover:duration-1000"

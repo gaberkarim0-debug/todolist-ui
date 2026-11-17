@@ -23,8 +23,9 @@ export default function Register() {
       );
       if (res.data) {
         toast.success("User Create Succefully");
-        if (token) {
-        }
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       }
     } catch (error) {
       toast.error(error.message);
@@ -40,7 +41,7 @@ export default function Register() {
       onSubmit={handleSubmit}
       validationSchema={registerSchema}
     >
-      <Form className="w-200 mx-auto shadow flex flex-col items-center justify-center  gap-10 min-h-dvh">
+      <Form className="lg:w-200 w-full mx-auto shadow flex flex-col items-center justify-center  gap-10 min-h-dvh">
         <h1 className="text-3xl tracking-wider cursor-default text-gray-400 hover:text-gray-600 duration-300  font-bold  uppercase">
           Welcome
         </h1>

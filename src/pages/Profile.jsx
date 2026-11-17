@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 
 const Profile = () => {
     // store
-      const { token } = useContext(globalStoree);
+      const { token } = useContext(globalStore);
       const navigate = useNavigate();
       // use effect
       useEffect(() => {

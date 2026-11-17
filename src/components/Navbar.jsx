@@ -10,6 +10,7 @@ export default function Navbar() {
   const { token, setToken } = useContext(globalStore);
   function logOut() {
     localStorage.removeItem("token");
+    localStorage.removeItem("userData");
     toast.success("You have been successfully logged out!", {
       duration: 3000,
     });
@@ -17,26 +18,19 @@ export default function Navbar() {
   }
   const location = useLocation();
   return (
-    <nav className="hidden lg:flex w-200 justify-between mx-auto py-5 items-center">
+    <nav className="flex md:w-full lg:w-200 justify-between mx-auto py-5 gap-5 md:gap-0 items-center">
       <div>
-        <Link to={""}>
+        <Link to={"/home"}>
           <img src={hero} alt="Logo" />
         </Link>
       </div>
       <ul className="flex gap-10 items-center ">
         {token ? (
           <>
-            <li className="overflow-hidden">
-              <Link
-                to={"home"}
-                className="text-xl tracking-wider font-bold text-gray-600 relative group "
-              >
-                Home
-                <span className="absolute w-full  bg-gray-700 h-0.5 bottom-0 block right-full group-hover:right-0 duration-300   "></span>
-              </Link>
-            </li>
             <li className="border-3 rounded-[50%] hover:border-gray-400 duration-300 border-gray-300  p-2 flex w-fit cursor-pointer ">
-              <IoPersonSharp />
+              <Link to={"profile"}>
+                <IoPersonSharp />
+              </Link>
             </li>
             <Button handleClick={logOut}>logout</Button>
           </>
